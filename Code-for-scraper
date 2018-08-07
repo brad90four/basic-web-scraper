@@ -1,35 +1,52 @@
-# basic-web-scraper
-First Basic Web Scraper with Python
 # -*- coding: utf-8 -*-
 """
-Created on Sat Aug  4 16:53:30 2018
+Created on Mon Aug  5 20:00 2018
 Basic Web Scraper
 @author: Brad
 """
 
-    try:
-        import requests
-        from bs4 import BeautifulSoup
-    except:
-        print("Please import requests and BeautifulSoup and try again.")
+try:
+    import requests
+    from bs4 import BeautifulSoup
+except:
+    raise SystemExit("Please import requests and BeautifulSoup \
+                     and try again.")
     
-    def basicscraper():
-        """Basic scraper that takes user input for url, HTML tag and output text file name.
     
-        url              --user input for the target url
-        new_scrape_name  --user input for output text file
-        what             --user input for HTML tag    
-        """
+def scrape_info():
+    """Gathers relevant web scraping data.
     
-        url = str(input("Enter url: "))
-        r = requests.get(url)
-        soup = BeautifulSoup(r.text,"lxml")
-        new_scrape_name = str(input("Enter text file name: "))
-        output = open(new_scrape_name + ".txt", "a")
-        what = str(input("What HTML tag are you looking for? (h3,a,p, etc.) : "))
-        for something in soup.find_all(what):
-            a = something.text.strip()
-            output.write("\n" + a + "\n")
-        output.close
+    Returns url, new_scrape_name and target_tag from input.
+    """
+    url = input("Enter url: ")
+    new_scrape_name = input("Enter text file name: ")
+    target_tag = input("What HTML tag are you looking for? : ")
+    return url, new_scrape_name, target_tag
 
-    basicscraper()
+def basicscraper(url, new_scrape_name, target_tag):
+    """Goes to url, takes text from target_tag, outputs text with new line \
+    in new_scrape_name.txt.
+    
+    Note:
+    If using on it's own, need to input arguments as strings. \ 
+    e.g. basicscraper("url", "new_scrape_name", "target_tag")
+    Keyword arguments:
+    url -- the webpage to scrape
+    new_scrape_name -- the text file output title
+    target_tag -- the HTML tag to scrape the text for
+    """
+    page_data = requests.get(url)
+    soup = BeautifulSoup(page_data.text,"lxml")
+    for something in soup.find_all(target_tag):
+        tag_text = something.text.strip()
+        with open(new_scrape_name + ".txt", "a") as output:
+            output.write(tag_text + "\n")
+
+def scrape_away(url=None, new_scrape_name=None, target_tag=None):
+    """If arguments are None, calls scrape_info. Otherwise passes arguments
+    to basicscraper."""
+    if (url is None and new_scrape_name is None and target_tag is None):
+        url, new_scrape_name, target_tag = scrape_info()
+        basicscraper(url, new_scrape_name, target_tag)
+    else:
+        basicscraper(url, new_scrape_name, target_tag)
