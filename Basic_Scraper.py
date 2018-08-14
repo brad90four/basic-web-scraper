@@ -12,11 +12,14 @@ try:
     import time
     import csv
     import pandas as pd
-except:
+    import numpy as np
+except ImportError:
     raise SystemExit("Please import requests, BeautifulSoup, os and time and try again.")
 
-project_directory = os.getcwd()
+file_path = os.path.abspath(__file__)
+project_directory = os.path.dirname(file_path)
 scrape_folder = os.path.join(project_directory + "\scrape_data")
+os.chdir(project_directory)
 
 def scrape_info():
     """Gathers relevant web scraping data.
@@ -58,19 +61,12 @@ def basicscraper(url, new_scrape_name, target_tag):
 def scrape_away(url=None, new_scrape_name=None, target_tag=None):
     """If arguments are None, calls scrape_info. Otherwise passes arguments
     to basicscraper."""
-    if (url is None and new_scrape_name is None and target_tag is None):
+    if url is None and new_scrape_name is None and target_tag is None:
         url, new_scrape_name, target_tag = scrape_info()
         basicscraper(url, new_scrape_name, target_tag)
     else:
         basicscraper(url, new_scrape_name, target_tag)
 
-def scrape_reader():
-    """Useful description
-    encoding types on windows: latin1, iso-8859-1, cp1252
-    Returns something
-    """
-    os.chdir(scrape_folder)
-    scraped_data = pd.read_csv("readtest.csv", delimiter="|", encoding="cp1252",
-                                   names =["URL", "HTML Tag", "Date", "Text"])
-    scrape_dataframe = scraped_data
-    print(scrape_dataframe.head())
+os.chdir(scrape_folder)
+scraped_data = pd.read_csv("readtest.csv", delimiter="|", encoding="cp1252",
+                               names=["URL", "HTML Tag", "Date", "Text"])
