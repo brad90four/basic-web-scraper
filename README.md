@@ -1,6 +1,7 @@
 # basic-web-scraper
 First Basic Web Scraper with Python
 
-Takes user input for url, output text name and HTML tags to scrape. 
+Takes user input for url, HTML tag and output file name. 
 
-import requests and BeautifulSoup from bs4
+Will return .csv file with "|" as the delimiter. 
+
