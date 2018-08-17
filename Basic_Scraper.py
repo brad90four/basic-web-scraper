@@ -66,7 +66,3 @@ def scrape_away(url=None, new_scrape_name=None, target_tag=None):
         basicscraper(url, new_scrape_name, target_tag)
     else:
         basicscraper(url, new_scrape_name, target_tag)
-
-os.chdir(scrape_folder)
-scraped_data = pd.read_csv("readtest.csv", delimiter="|", encoding="cp1252",
-                               names=["URL", "HTML Tag", "Date", "Text"])
