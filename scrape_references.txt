@@ -1,0 +1,61 @@
+News Sites for Scraping
+
+Site Name
+Yahoo
+https://www.yahoo.com/news/
+Headline HTML Tag
+h3
+
+Site Name
+Google
+https://news.google.com/?hl=en-US&gl=US&ceid=US:en
+Headline HTML Tag
+a
+
+Site Name
+Huffington Post
+https://www.huffingtonpost.com/
+Headline HTML Tag
+a
+
+Site Name
+CNN
+https://www.cnn.com/
+Headline HTML Tag
+h3
+
+Site Name
+New York Times
+https://www.nytimes.com/
+Headline HTML Tag
+h2
+
+Site Name
+Fox News
+http://www.foxnews.com/
+Headline HTML Tag
+h2
+
+Site Name
+NBC News
+https://www.nbcnews.com/
+Headline HTML Tag
+h1
+
+Site Name
+Daily Mail
+http://www.dailymail.co.uk/ushome/index.html
+Headline HTML Tag
+h2
+
+Site Name
+Washington Post
+https://www.washingtonpost.com/?reload=true
+Headline HTML Tag
+a
+
+Site Name
+The Guardian
+https://www.theguardian.com/us
+Headline HTML Tag
+a
