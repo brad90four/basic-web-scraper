@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Aug  5 20:00 2018
-Basic Web Scraper
-@author: Brad
-"""
-
 try:
     import requests
     from bs4 import BeautifulSoup
@@ -14,8 +7,9 @@ try:
     import pandas as pd
     import numpy as np
 except ImportError:
-    raise SystemExit("Please import requests, BeautifulSoup, os and time and try again.")
+    raise SystemExit("Please install modules and try again.")
 
+#Setting paths to where the scrape.csv files are located
 file_path = os.path.abspath(__file__)
 project_directory = os.path.dirname(file_path)
 scrape_folder = os.path.join(project_directory + "\scrape_data")
