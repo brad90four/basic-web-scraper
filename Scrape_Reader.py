@@ -47,9 +47,9 @@ def keyword_plot(keyword=None):
         cleaning_df["Keyword Mentions"] = pd.np.where(cleaning_df.Text.str.contains(keyword), 1, 0)
         compare = cleaning_df[["Date", "URL", "Keyword Mentions"]]
         view_data = compare.groupby(["Date", "URL"])["Keyword Mentions"].sum()
-        view_data.plot.bar()
+        view_data.unstack().plot.bar(title="Keyword Mentions by URL and Date", fontsize=10, figsize=(10, 6)).legend(loc="best", fontsize="x-small")
     else:
         cleaning_df["Keyword Mentions"] = pd.np.where(cleaning_df.Text.str.contains(keyword), 1, 0)
         compare = cleaning_df[["Date", "URL", "Keyword Mentions"]]
         view_data = compare.groupby(["Date", "URL"])["Keyword Mentions"].sum()
-        view_data.plot.bar()
+        view_data.unstack().plot.bar(title="Keyword Mentions by URL and Date", fontsize=10, figsize=(10, 6)).legend(loc="best", fontsize="x-small")
